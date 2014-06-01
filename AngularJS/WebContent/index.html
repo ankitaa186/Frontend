@@ -1,0 +1,52 @@
+<html ng-app="nameApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.10/angular.min.js">
+	
+</script>
+<script>
+	var nameApp = angular.module('nameApp', []);
+	nameApp.controller('NameCtrl', function NameCtrl($scope) {
+		$scope.name = 'John';
+	})
+
+	function personController($scope) {
+		$scope.persons = [ {
+			name : "Ankit",
+			city : "Bangalore"
+		} ]
+		$scope.addPerson = function () {
+			//alert("Adding PErson");
+			$scope.persons.push({
+				name : $scope.inputName,
+				city : $scope.inputCity
+			});
+		}
+	}
+
+	
+</script>
+</head>
+<body>
+	<span ng-controller="NameCtrl"> Name <input ng-model="name"
+		type="text" /> Your name is {{name}}
+	</span>
+	<br />
+	<br />
+	<span ng-controller="personController"> Person list: <br />
+		<ul>
+			<li ng-repeat="person in persons">{{person.name}} -
+				{{person.city}}</li>
+		</ul> <br /> Add Person <br />
+		<form ng-submit="addPerson()">
+			Name - <input type="text" ng-model="inputName" /> <br /> City - <input
+				type="test" ng-model="inputCity" /> <br /> <input type="submit"
+				namme="Add Person" />
+		</form>
+		Adding new person {{inputName}} {{inputCity}}
+	</span>
+
+</body>
+</html>
